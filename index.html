@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sana3ly — صنّعلي | Manufacture for You</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800;900&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Kufi+Arabic:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#17181C;
+    --canvas:#EFE9DE;
+    --canvas-2:#E4DDCE;
+    --indigo:#2F4468;
+    --indigo-deep:#1F2E47;
+    --thread:#C1432A;
+    --stone:#8B8479;
+    --white:#FAF8F4;
+    --line: rgba(23,24,28,0.14);
+    --font-display:'Big Shoulders Display', sans-serif;
+    --font-body:'Inter', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+    --font-ar:'Noto Kufi Arabic', sans-serif;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--canvas);
+    color:var(--ink);
+    font-family:var(--font-body);
+    overflow-x:hidden;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- TAG MOTIF (signature element) ---------- */
+  .tag{
+    position:relative;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:6px 14px 6px 10px;
+    background:var(--white);
+    border:1px solid var(--ink);
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    white-space:nowrap;
+  }
+  .tag::before{
+    content:'';
+    width:8px;height:8px;
+    border-radius:50%;
+    background:var(--canvas);
+    border:1px solid var(--ink);
+    flex-shrink:0;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(239,233,222,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:18px 0;
+  }
+  .brandmark{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+  }
+  .brandmark .en{
+    font-family:var(--font-display);
+    font-weight:900;
+    font-size:26px;
+    letter-spacing:0.01em;
+  }
+  .brandmark .ar{
+    font-family:var(--font-ar);
+    font-size:18px;
+    color:var(--indigo);
+  }
+  .navlinks{
+    display:flex;
+    gap:28px;
+    font-size:14px;
+    font-weight:600;
+  }
+  .navlinks a{
+    text-decoration:none;
+    position:relative;
+    padding-bottom:3px;
+  }
+  .navlinks a::after{
+    content:'';
+    position:absolute;
+    left:0; bottom:0;
+    width:0%; height:2px;
+    background:var(--thread);
+    transition:width 0.25s ease;
+  }
+  .navlinks a:hover::after{width:100%;}
+  .navcta{
+    font-family:var(--font-mono);
+    font-size:12px;
+    text-transform:uppercase;
+    background:var(--ink);
+    color:var(--white);
+    padding:9px 16px;
+    text-decoration:none;
+    display:inline-block;
+  }
+  .navcta:hover{background:var(--thread);}
+  .navlinks, .navcta{display:none;}
+  @media(min-width:820px){ .navlinks{display:flex;} .navcta{display:inline-block;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:88px 0 96px;
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .hero-grain{
+    position:absolute;
+    inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 27px, var(--line) 27px, var(--line) 28px);
+    opacity:0.5;
+    pointer-events:none;
+  }
+  .hero-inner{position:relative; z-index:1;}
+  .eyebrow-tag{margin-bottom:28px;}
+  .hero h1{
+    font-family:var(--font-display);
+    font-weight:900;
+    font-size:clamp(48px, 9vw, 108px);
+    line-height:0.92;
+    letter-spacing:-0.01em;
+    max-width:900px;
+  }
+  .hero h1 .accent{color:var(--indigo);}
+  .hero-ar{
+    font-family:var(--font-ar);
+    font-size:clamp(22px,3.4vw,34px);
+    color:var(--thread);
+    margin-top:14px;
+    letter-spacing:0.01em;
+  }
+  .hero-sub{
+    max-width:560px;
+    margin-top:28px;
+    font-size:18px;
+    line-height:1.6;
+    color:#3a3a3a;
+  }
+  .hero-actions{
+    margin-top:40px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn-primary, .btn-secondary{
+    font-family:var(--font-mono);
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+    padding:14px 24px;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:transform 0.15s ease, background 0.15s ease;
+  }
+  .btn-primary{background:var(--thread); color:var(--white);}
+  .btn-primary:hover{transform:translate(-2px,-2px); background:#a8371f;}
+  .btn-secondary{background:transparent; color:var(--ink); border:1px solid var(--ink);}
+  .btn-secondary:hover{transform:translate(-2px,-2px); background:var(--ink); color:var(--white);}
+
+  .hero-stats{
+    margin-top:64px;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:0;
+    border-top:1px solid var(--line);
+    max-width:640px;
+  }
+  .hero-stats div{
+    padding:20px 20px 0 0;
+    border-right:1px solid var(--line);
+  }
+  .hero-stats div:last-child{border-right:none;}
+  .hero-stats .num{
+    font-family:var(--font-display);
+    font-weight:800;
+    font-size:40px;
+    color:var(--indigo);
+    line-height:1;
+  }
+  .hero-stats .label{
+    font-family:var(--font-mono);
+    font-size:11px;
+    text-transform:uppercase;
+    color:var(--stone);
+    margin-top:6px;
+  }
+
+  /* ---------- SECTION HEADS ---------- */
+  section{padding:88px 0;}
+  .section-head{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    gap:24px;
+    margin-bottom:56px;
+    flex-wrap:wrap;
+    border-bottom:1px solid var(--line);
+    padding-bottom:24px;
+  }
+  .section-head h2{
+    font-family:var(--font-display);
+    font-weight:900;
+    font-size:clamp(34px,5vw,56px);
+    line-height:0.95;
+  }
+  .section-head p{
+    max-width:340px;
+    font-size:15px;
+    color:var(--stone);
+    line-height:1.55;
+  }
+
+  /* ---------- WHAT WE DO ---------- */
+  .services{
+    background:var(--ink);
+    color:var(--white);
+  }
+  .services .section-head{border-color:rgba(250,248,244,0.15);}
+  .services .section-head p{color:#a9a49a;}
+  .service-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
+    gap:1px;
+    background:rgba(250,248,244,0.15);
+    border:1px solid rgba(250,248,244,0.15);
+  }
+  .service-card{
+    background:var(--ink);
+    padding:32px 28px;
+  }
+  .service-card .idx{
+    font-family:var(--font-mono);
+    font-size:12px;
+    color:var(--thread);
+  }
+  .service-card h3{
+    font-family:var(--font-display);
+    font-weight:800;
+    font-size:24px;
+    margin:16px 0 12px;
+  }
+  .service-card p{
+    font-size:14px;
+    line-height:1.6;
+    color:#c7c2b8;
+  }
+
+  /* ---------- PROCESS ---------- */
+  .process-flow{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0;
+    counter-reset:step;
+  }
+  .step{
+    flex:1 1 180px;
+    position:relative;
+    padding:28px 20px 0 0;
+    border-top:3px solid var(--ink);
+  }
+  .step .step-num{
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--thread);
+    margin-bottom:10px;
+    display:block;
+  }
+  .step h4{
+    font-family:var(--font-display);
+    font-weight:800;
+    font-size:22px;
+    margin-bottom:8px;
+  }
+  .step p{
+    font-size:14px;
+    color:var(--stone);
+    line-height:1.5;
+    max-width:220px;
+  }
+  .step-arrow{
+    display:flex;
+    align-items:flex-start;
+    padding-top:22px;
+    color:var(--indigo);
+    font-size:22px;
+    flex:0 0 auto;
+  }
+  @media(max-width:760px){ .step-arrow{display:none;} .step{border-top:3px solid var(--ink); padding-top:20px;} }
+
+  /* ---------- BRANDS ---------- */
+  .brands{
+    background:var(--canvas-2);
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .brand-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .brand-tags .tag{
+    font-size:13px;
+    padding:10px 18px 10px 12px;
+    cursor:default;
+  }
+  .brand-tags .tag:nth-child(odd){transform:rotate(-1deg);}
+  .brand-tags .tag:nth-child(even){transform:rotate(1deg);}
+  .brand-more{
+    font-family:var(--font-mono);
+    font-size:13px;
+    color:var(--indigo);
+    display:flex;
+    align-items:center;
+    padding:0 6px;
+  }
+
+  /* ---------- GALLERY ---------- */
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+    gap:18px;
+  }
+  .gallery-item{
+    position:relative;
+    aspect-ratio:4/5;
+    overflow:hidden;
+    background:var(--ink);
+  }
+  .gallery-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    filter:grayscale(15%) contrast(1.03);
+    transition:transform 0.4s ease, filter 0.4s ease;
+  }
+  .gallery-item:hover img{
+    transform:scale(1.05);
+    filter:grayscale(0%) contrast(1.05);
+  }
+  .gallery-item .cap{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    padding:10px 12px;
+    background:linear-gradient(0deg, rgba(23,24,28,0.85), transparent);
+    color:var(--white);
+    font-family:var(--font-mono);
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:0.03em;
+    opacity:0;
+    transition:opacity 0.25s ease;
+  }
+  .gallery-item:hover .cap{opacity:1;}
+
+  /* ---------- PROCESS PHOTOS ---------- */
+  .process-photos{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+    gap:18px;
+    margin-top:48px;
+  }
+  .process-photo{
+    aspect-ratio:1/1;
+    overflow:hidden;
+    position:relative;
+  }
+  .process-photo img{
+    width:100%;height:100%;object-fit:cover;display:block;
+  }
+  .process-photo .tag{
+    position:absolute;
+    bottom:10px; left:10px;
+    background:var(--white);
+  }
+  @media(max-width:700px){ .process-photos{grid-template-columns:1fr;} }
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    background:var(--indigo-deep);
+    color:var(--white);
+  }
+  .contact .section-head{border-color:rgba(250,248,244,0.15);}
+  .contact .section-head p{color:#b9c2d4;}
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1.2fr 1fr;
+    gap:48px;
+  }
+  @media(max-width:760px){ .contact-grid{grid-template-columns:1fr;} }
+  .contact-lead{
+    font-family:var(--font-display);
+    font-weight:800;
+    font-size:clamp(30px,4vw,44px);
+    line-height:1.05;
+    max-width:480px;
+  }
+  .contact-lead .accent{color:#E8A78C;}
+  .contact-list{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+    border-top:1px solid rgba(250,248,244,0.2);
+  }
+  .contact-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:22px 0;
+    border-bottom:1px solid rgba(250,248,244,0.2);
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .contact-row .k{
+    font-family:var(--font-mono);
+    font-size:11px;
+    text-transform:uppercase;
+    color:#9fb0cb;
+  }
+  .contact-row .v{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:22px;
+  }
+  .contact-row a.v{
+    text-decoration:none;
+  }
+  .contact-row a.v:hover{color:var(--thread);}
+  .wa-btn{
+    font-family:var(--font-mono);
+    font-size:11px;
+    text-transform:uppercase;
+    background:rgba(250,248,244,0.1);
+    border:1px solid rgba(250,248,244,0.35);
+    color:var(--white);
+    padding:8px 14px;
+    text-decoration:none;
+    white-space:nowrap;
+  }
+  .wa-btn:hover{background:#25D366; border-color:#25D366; color:var(--ink);}
+
+  footer{
+    background:var(--ink);
+    color:#8f897d;
+    padding:28px 0;
+    font-family:var(--font-mono);
+    font-size:12px;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  footer .ar{font-family:var(--font-ar); color:#c7c2b8;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="brandmark">
+        <span class="en">SANA3LY</span>
+        <span class="ar">صنّعلي</span>
+      </div>
+      <div class="navlinks">
+        <a href="#services">What We Do</a>
+        <a href="#process">Process</a>
+        <a href="#brands">Brands</a>
+        <a href="#gallery">Work</a>
+      </div>
+      <a href="#contact" class="navcta">Get In Touch</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-grain"></div>
+  <div class="wrap hero-inner">
+    <div class="eyebrow-tag">
+      <span class="tag">Cairo, Egypt — Manufacturing &amp; Brand Studio</span>
+    </div>
+    <h1>You bring the<br>idea. We <span class="accent">make it real.</span></h1>
+    <div class="hero-ar">صنّعلي — يعني "اصنعه لي"</div>
+    <p class="hero-sub">Sana3ly turns clothing ideas into finished products. We handle development, sourcing, manufacturing, quality control, photoshoots, and the marketing that gets your brand seen — so you can focus on building the brand, not chasing factories.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Start Your Product →</a>
+      <a href="#gallery" class="btn-secondary">See Our Work</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="num">40+</div>
+        <div class="label">Local Brands Served</div>
+      </div>
+      <div>
+        <div class="num">1</div>
+        <div class="label">Studio, Every Step</div>
+      </div>
+      <div>
+        <div class="num">EG</div>
+        <div class="label">Made In Egypt</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>What we<br>handle for you</h2>
+      <p>Everything between a sketch and a shelf-ready product — under one roof, one team, one point of contact.</p>
+    </div>
+    <div class="service-grid">
+      <div class="service-card">
+        <span class="idx">01</span>
+        <h3>Product Development</h3>
+        <p>We take your concept or design and turn it into a real, wearable pattern and sample — ready for production.</p>
+      </div>
+      <div class="service-card">
+        <span class="idx">02</span>
+        <h3>Sourcing</h3>
+        <p>Fabrics, trims, and materials sourced to match your quality bar and budget, no guesswork on your end.</p>
+      </div>
+      <div class="service-card">
+        <span class="idx">03</span>
+        <h3>Manufacturing</h3>
+        <p>Full production runs handled locally in Egypt, sized to your order — from first batch to repeat orders.</p>
+      </div>
+      <div class="service-card">
+        <span class="idx">04</span>
+        <h3>Quality Control</h3>
+        <p>Every batch checked before it reaches you, so what ships out matches what you signed off on.</p>
+      </div>
+      <div class="service-card">
+        <span class="idx">05</span>
+        <h3>Photoshoots</h3>
+        <p>Product and campaign shoots that make your pieces look as good online as they do in hand.</p>
+      </div>
+      <div class="service-card">
+        <span class="idx">06</span>
+        <h3>Marketing &amp; Online Presence</h3>
+        <p>Content and promotion support to help your brand actually get discovered, not just exist online.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Idea to<br>ready-to-sell</h2>
+      <p>One path, four stages. You stay in the loop, we handle the moving parts.</p>
+    </div>
+    <div class="process-flow">
+      <div class="step">
+        <span class="step-num">STAGE 01</span>
+        <h4>Idea</h4>
+        <p>You bring a concept, sketch, or reference — even a rough one.</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step">
+        <span class="step-num">STAGE 02</span>
+        <h4>Sample</h4>
+        <p>We develop the pattern, source materials, and build a real sample.</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step">
+        <span class="step-num">STAGE 03</span>
+        <h4>Production</h4>
+        <p>Approved sample goes into full manufacturing with quality checks.</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step">
+        <span class="step-num">STAGE 04</span>
+        <h4>Launch</h4>
+        <p>Photoshoot, content, and marketing support to bring it to market.</p>
+      </div>
+    </div>
+    <div class="process-photos">
+      <div class="process-photo">
+        <img src="assets/process-04.jpg" alt="Designing a t-shirt graphic in Adobe Illustrator">
+        <span class="tag">Product Development</span>
+      </div>
+      <div class="process-photo">
+        <img src="assets/process-01.jpg" alt="Screen printing a design onto fabric at Sana3ly's workshop">
+        <span class="tag">Screen Printing</span>
+      </div>
+      <div class="process-photo">
+        <img src="assets/process-02.jpg" alt="Embroidered brand logo detail on denim fabric">
+        <span class="tag">Embroidery</span>
+      </div>
+      <div class="process-photo">
+        <img src="assets/process-03.jpg" alt="Embroidered brand logo detail on a finished garment">
+        <span class="tag">Quality Check</span>
+      </div>
+      <div class="process-photo">
+        <img src="assets/process-05.jpg" alt="Embroidered Stitch logo detail on a black garment">
+        <span class="tag">Embroidery</span>
+      </div>
+      <div class="process-photo">
+        <img src="assets/process-06.jpg" alt="Freshly screen printed Vamp graphic on white fabric">
+        <span class="tag">Screen Printing</span>
+      </div>
+      <div class="process-photo">
+        <img src="assets/process-07.jpg" alt="Freshly screen printed star and dog graphics on fabric at the press">
+        <span class="tag">Screen Printing</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="brands" id="brands">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Brands we've<br>built with</h2>
+      <p>A few of the 40+ local labels Sana3ly has helped manufacture and grow.</p>
+    </div>
+    <div class="brand-tags">
+      <span class="tag">Undiscoverd</span>
+      <span class="tag">V4MP</span>
+      <span class="tag">Stitch</span>
+      <span class="tag">Tüt</span>
+      <span class="tag">Kargo</span>
+      <span class="tag">Blacklist</span>
+      <span class="tag">Eternity</span>
+      <span class="tag">Dazed</span>
+      <span class="tag">Vamp Cult</span>
+      <span class="brand-more">+ 31 more brands</span>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Work from<br>the floor</h2>
+      <p>Campaigns and products Sana3ly has developed, manufactured, and shot for local brands.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item"><img src="assets/gallery-01.jpg" alt="Two models in earth-tone linen sets produced by Sana3ly"><span class="cap">Campaign Shoot</span></div>
+      <div class="gallery-item"><img src="assets/gallery-03.jpg" alt="Model in a beige linen co-ord at a historic doorway"><span class="cap">Campaign Shoot</span></div>
+      <div class="gallery-item"><img src="assets/gallery-02.jpg" alt="Three models in neutral-toned Sana3ly-produced outfits"><span class="cap">Campaign Shoot</span></div>
+      <div class="gallery-item"><img src="assets/gallery-06.jpg" alt="Three models wearing Vyme graphic hoodies and sweatshirts"><span class="cap">Vyme</span></div>
+      <div class="gallery-item"><img src="assets/gallery-05.jpg" alt="Two models wearing Blacklist branded t-shirts"><span class="cap">Blacklist</span></div>
+      <div class="gallery-item"><img src="assets/gallery-04.jpg" alt="Model wearing a pale pink cropped tee by the pool"><span class="cap">Campaign Shoot</span></div>
+      <div class="gallery-item"><img src="assets/gallery-08.jpg" alt="Dazed branded black t-shirt front and back flat lay"><span class="cap">Dazed</span></div>
+      <div class="gallery-item"><img src="assets/gallery-07.jpg" alt="Blacklist branded black shorts product photo"><span class="cap">Blacklist</span></div>
+      <div class="gallery-item"><img src="assets/gallery-09.jpg" alt="Eternity branded t-shirts folded and ready for delivery"><span class="cap">Eternity</span></div>
+      <div class="gallery-item"><img src="assets/gallery-10.jpg" alt="V4MP campaign shoot of two models at night under a tree"><span class="cap">V4MP</span></div>
+      <div class="gallery-item"><img src="assets/gallery-11.jpg" alt="Two models wearing matching Vamp Cult grey hoodie sets"><span class="cap">Vamp Cult</span></div>
+      <div class="gallery-item"><img src="assets/gallery-12.jpg" alt="Model on a Nile boat at night wearing a Dazed graphic tee"><span class="cap">Dazed</span></div>
+      <div class="gallery-item"><img src="assets/gallery-13.jpg" alt="Sepia-toned portrait of a model wearing a Dazed t-shirt"><span class="cap">Dazed</span></div>
+      <div class="gallery-item"><img src="assets/gallery-14.jpg" alt="Undiscovered Co. black jersey with pink number 09"><span class="cap">Undiscoverd</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Let's make<br>your product</h2>
+      <p>Reach out on WhatsApp or by phone — fastest way to get a response.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-lead">
+        Got a design or an idea? <span class="accent">Send it over</span> — we'll tell you exactly what it takes to produce it.
+      </div>
+      <div class="contact-list">
+        <div class="contact-row">
+          <div>
+            <div class="k">Phone / WhatsApp</div>
+            <a class="v" href="tel:+201142836668">011 4283 6668</a>
+          </div>
+          <a class="wa-btn" href="https://wa.me/201142836668" target="_blank" rel="noopener">Chat on WhatsApp</a>
+        </div>
+        <div class="contact-row">
+          <div>
+            <div class="k">Phone / WhatsApp</div>
+            <a class="v" href="tel:+201063322440">010 6332 2440</a>
+          </div>
+          <a class="wa-btn" href="https://wa.me/201063322440" target="_blank" rel="noopener">Chat on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; width:100%;">
+    <span>SANA3LY © 2026 — Cairo, Egypt</span>
+    <span class="ar">صنّعلي</span>
+  </div>
+</footer>
+
+</body>
+</html>
